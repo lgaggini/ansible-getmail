@@ -1,0 +1,23 @@
+[retriever]
+type = SimplePOP3SSLRetriever
+server = {{ item.server }}
+port = 995
+username = {{ item.username }}
+password = {{ item.password }}
+
+[destination]
+type = MDA_external
+path = /usr/lib/dovecot/deliver
+arguments = ("-e", )
+
+[options]
+delete = true
+message_log = {{ getmail_log }}/{{ item.account }}
+read_all = false
+delivered_to = false
+received = false 
+
+[filter]
+type = Filter_external
+path = /usr/bin/rspamc
+arguments = ("--mime", )

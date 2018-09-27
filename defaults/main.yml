@@ -1,0 +1,21 @@
+---
+# packages to be installed
+getmail_packages:
+  - getmail
+
+# getmail user
+getmail_user: vmail
+getmail_group: vmail
+
+# where to store getmail configuration files
+getmail_home: /etc/getmail
+
+# where to store getmail log files
+getmail_log: /var/log/getmail
+
+# getmail_accounts to be fetched by getmail
+getmail_accounts:
+  - account: test
+    server: test
+    username: test
+    password: test

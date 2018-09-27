@@ -1,0 +1,26 @@
+---
+- name: getmail | install getmail packages
+  apt: name={{ item }} state=latest 
+  with_items: "{{ getmail_packages }}"
+
+- name: getmail | ensure getmail group is present
+  group: name={{ getmail_group }} state=present
+
+- name: getmail | ensure getmail user is present
+  user: name={{ getmail_user }} group={{ getmail_group }} state=present
+
+- name: getmail | create getmail user home
+  file: path={{ getmail_home }} owner={{ getmail_user }} group={{ getmail_group }} mode=0700 state=directory
+
+- name: getmail | create getmail log 
+  file: path={{ getmail_log }} owner={{ getmail_user }} group={{ getmail_group }} mode=0700 state=directory
+
+- name: getmail | create account configurations
+  template: src=getmailrc.j2 dest={{ getmail_home }}/{{ item.account }} owner={{ getmail_user }} group={{ getmail_group }} mode=0770
+  with_items: "{{ getmail_accounts }}"
+
+- name: getmail | create systemd unit
+  template: src=getmail.service.j2 dest=/etc/systemd/system/getmail.service owner=root group=root mode=0644
+
+- name: getmail | start and enable systemd unit
+  systemd: name=getmail state=started enabled=yes 
