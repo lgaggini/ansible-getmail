@@ -2,7 +2,7 @@ galaxy_info:
   role_name: ansible-getmail
   author: lgaggini
   description: ansible-getmail is an Ansible role to install and configure getmail on a debian based OS.
-  license: "license (GPLv3)"
+  license: license (GPLv3)
   min_ansible_version: 2.4
   platforms:
    - name: Debian
