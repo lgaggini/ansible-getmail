@@ -22,3 +22,4 @@ getmail_accounts:
     server: test
     username: test
     password: test
+    destination_user: test
