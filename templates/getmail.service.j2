@@ -1,12 +1,8 @@
 [Unit]
 Description=Getmail mail retriever
 Wants=dovecot.service
-After=dovecot.service
 
 [Service]
+Type=oneshot
 User={{ getmail_user }}
-ExecStart=/usr/bin/getmail -g {{ getmail_home }} -r {% for account in getmail_accounts %}{{ account.account }}{{ " -r" if not loop.last else "" }}{% endfor %} --i INBOX
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
+ExecStart=/usr/bin/getmail -g {{ getmail_home }} -r {% for account in getmail_accounts %}{{ account.account }}{{ " -r" if not loop.last else "" }}{% endfor %} 

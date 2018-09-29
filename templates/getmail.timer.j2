@@ -1,0 +1,10 @@
+[Unit]
+Description=Get mail every {{ getmail_minutes_interval }} minutes
+
+[Timer]
+OnBootSec={{ getmail_minutes_interval }}
+OnUnitActiveSec=5min
+Persistent=False
+
+[Install]
+WantedBy=timers.target

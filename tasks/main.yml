@@ -22,5 +22,8 @@
 - name: getmail | create systemd unit
   template: src=getmail.service.j2 dest=/etc/systemd/system/getmail.service owner=root group=root mode=0644
 
-- name: getmail | start and enable systemd unit
-  systemd: name=getmail state=started enabled=yes 
+- name: getmail | create systemd timer
+  template: src=getmail.timer.j2 dest=/etc/systemd/system/getmail.timer owner=root group=root mode=0644
+
+- name: getmail | start and enable systemd unit timer
+  systemd: daemon_reload=yes name=getmail.timer state=started enabled=yes

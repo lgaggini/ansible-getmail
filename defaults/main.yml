@@ -13,6 +13,9 @@ getmail_home: /etc/getmail
 # where to store getmail log files
 getmail_log: /var/log/getmail
 
+# getmail oneshot minutes interval
+getmail_minutes_interval: 5
+
 # getmail_accounts to be fetched by getmail
 getmail_accounts:
   - account: test
